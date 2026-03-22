@@ -1,0 +1,15 @@
+{
+  "name": "chai_aur_code_backened",
+  "version": "1.0.0",
+  "description": "a backened at chai aur code channel",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "javascript",
+    "backened"
+  ],
+  "author": "Tanuja",
+  "license": "ISC"
+}
