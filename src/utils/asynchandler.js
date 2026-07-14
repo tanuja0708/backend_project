@@ -12,8 +12,8 @@ const asyncHandler = (requestHandler) => {
 
 export {asyncHandler}
 
-// const asyncHandler = () => {}
-// const asyncHandler = (func) => () => {}
+// const asyncHandler = () => {}  //higher order funtion -->can accept function as a parameter and also return it;
+// const asyncHandler = (func) => () => {} //here the initial function is passed to the function
 // const asyncHandler = (func) => async() => {}
 
 // // this a wrapper
@@ -21,6 +21,7 @@ export {asyncHandler}
 //     try{
 //         await fn(req, res, next)
 //     }catch(error){
+
 //         res.status(error.code || 500).json({
 //             success: false,
 //             message: err.message
