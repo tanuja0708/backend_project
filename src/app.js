@@ -17,6 +17,14 @@ app.use(express.static("public")) //its a public assets
 
 app.use(cookieParser()) // reading and accessing cookies of websites -->crud operations
 
+//routes import
+import userRouter from './routes/user.routes.js'
+
+//routes declaration
+app.use("/api/v1/users", userRouter)
+
+//http://localhost:8000/api/v1/users/(router)
+
 
 
 export { app }
