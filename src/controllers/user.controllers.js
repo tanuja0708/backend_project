@@ -16,7 +16,7 @@ const registerUser = asyncHandler(async(req,res) => {
     //return response ...else return null/error
 
     const {fullName, email, username, password} = req.body
-    console.log("email", email);
+    //console.log("email", email);
 
     //validations
     // if(fullName ===""){ // youn can check each field individually like this 
@@ -30,7 +30,7 @@ const registerUser = asyncHandler(async(req,res) => {
         throw new ApiError(400, " All fields are required")
     }
 
-    const existedUser = User.findOne({
+    const existedUser = await User.findOne({
         $or: [{ username }, { email }]
     })
 
@@ -38,8 +38,9 @@ const registerUser = asyncHandler(async(req,res) => {
         throw new ApiError(409, "User with email or username already exists")
     }
 
+    //console.log(req.files);
     const avatarLocalPath = req.files?.avatar[0]?.path;
-    const coverImageLocalPath = req.files?.coverImage[0]?.path;
+    const coverImageLocalPath = req.files?.coverImage?.[0]?.path;
 
     if(!avatarLocalPath){
         throw new ApiError(400, "Avatar file is required")
@@ -52,7 +53,7 @@ const registerUser = asyncHandler(async(req,res) => {
         throw new ApiError(400, "Avatar file is required")
     }
 
-    const User = await User.create({
+    const user = await User.create({
         fullName,
         avatar: avatar.url,
         coverImage: coverImage?.url || "",
@@ -61,7 +62,7 @@ const registerUser = asyncHandler(async(req,res) => {
         username: username.toLowerCase()
     })
 
-    const createdUser = User.findById(user._id).select(
+    const createdUser = await User.findById(user._id).select(
         "-password -refreshToken"
     )
     if(!createdUser){

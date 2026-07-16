@@ -16,8 +16,9 @@ import fs from "fs"
                 resource_type:"auto" //auto detects which type file is being uploaded whether it is image or video
             })
             //file has been uploaded successfully
-            console.log("file is uploaded on cloudinary", response.url);
-            return response()
+            //console.log("file is uploaded on cloudinary", response.url);
+            fs.unlinkSync(localFilePath)
+            return response
         }catch(error){
             fs.unlinkSync(localFilePath)  //remove the locally saved temporarily file as the upload operation got failed -- ten file is presenton local server that is why it has to be removed if the uploading failed
             return null;
