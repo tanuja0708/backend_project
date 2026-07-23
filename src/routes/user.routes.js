@@ -48,7 +48,7 @@ router.route("/update-account").patch(verifyJWT,updateAccountDetails) //do not p
 
 router.route("/avatar").patch(verifyJWT, upload.single("avatar"), updateUserAvatar) //using patch as single field is updated
 
-router.route("/coverImage").patch(verifyJWT, upload.single("/coverImage"), updateUserCoverImage)
+router.route("/coverImage").patch(verifyJWT, upload.single("coverImage"), updateUserCoverImage)
 
 router.route("/c/:username").get(verifyJWT, getUserChannelProfile)  //using /c/: --> because we are accessing info in this using params
 
