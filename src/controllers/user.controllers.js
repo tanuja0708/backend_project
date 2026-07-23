@@ -141,7 +141,7 @@ const loginUser = asyncHandler(async(req,res) => {
     return res
     .status(200)
     .cookie("accessToken", accessToken, options)
-    .cookie("refreshtoken", refreshToken, options)
+    .cookie("refreshToken", refreshToken, options)
     .json(
         new ApiResponse(
             200,
@@ -158,7 +158,7 @@ const logoutUser = asyncHandler(async(req,res) => {
         req.user._id,
         {
             $unset: {  //set is an operator in mongodb which updates the fields
-                refreshToken: 1 //this removes the field from the document
+                refreshToken: 1 //this removes the field from document
             }
         },
         {
